@@ -40,7 +40,7 @@ Le probl\g{e}me admet encore une formulation duale : chercher $\alpha^{\ast}$ qu
 \par
 La fonction de d\'ecision a la m\^eme forme que pr\'ec\'edemment.
 
-\subsection{Noyaux semid\'efinis positifs}
+\subsection{Noyaux d\'efinis positifs}
 
 La question de la d\'etermination d'une fonction de d\'ecision se ram\g{e}ne donc \g{a} un probl\g{e}me d'optimisation convexe, %
 qui met en jeu la forme quadratique $\alpha \mapsto\sum\limits_{i,j}\alpha_i\alpha_j y_iy_j\langle x_i|x_j\rangle$, %
@@ -57,13 +57,13 @@ En pratique, on tente d'apppliquer la m\'ethode pr\'ec\'edente, qui coonvient po
 \par
 Il est toutefois possible, pour un jeu de donn\'ees $(x_i)$ contenu dans un espace $E$, d'associer \g{a} chaque donnn\'ee $x_i$, %
 donc potentiellement \g{a} chaque \'el\'ement $x$ de $E$ \g{a} mod\'eliser, un \emph{vecteur de repr\'esentation} %
-ou \og{} feature vector\fg{} $\Phi (x)$, situ\'e dans un certain espace pr\'ehilbertien $V$.
+ou \og{} feature vector\fg{} $\Phi (x)$, situ\'e dans un certain espace vectoriel $V$.
 
 \par
-$k:E\times E\rightarrow \mathbb{R}(x,y)\mapsto\langle\Phi (x)|\Phi (y)\rangle_{V}$ est sym\'etrique en $(x,y)$, et positif en $(x,x)$ pour tout $x$. %
-$k$ est appel\'e un \emph{noyau semid\'efini positif}.
+On munit 
 
 \par
-Moore et Aronstajn on montr\'e, comme dans \cite{Ar}, que r\'eciproquement %
-toute application $k:E^2\rightarrow \mathbb{R}$ sym\'etrique et semid\'efinie positive peu s'\'ecrire : %
-$\langle |\rangle_{\mathcal{H}}\circ\Phi$, o\g{u} $\mathcal{H}$ est un espace de Hilbert -qui sera rarement explicit\'e.
+
+
+
+
