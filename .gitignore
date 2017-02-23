@@ -1,0 +1,9 @@
+*.pre
+*.toc
+*.thm
+*.snm
+*.nav
+*.pdf
+build.sh
+buildfile.sh
+run.sh
