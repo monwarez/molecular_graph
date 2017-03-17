@@ -1,1 +1,19 @@
 \section{Le noyau de l'article : des marches al\'eatoires sur les graphes mol\'eculaires}
+    \par
+        On va dans la suite consid\'erer des graphes \'etiquett\'es, ce qui consiste \`a prendre un graphe
+        $G = (V,E)$ et une fonction $l: V \cup E \rightarrow A$ o\`u $A$ est un alphabet choisi.
+        Dans la suite l'alphabet $A$ est suppos\'e fix\'e (contenant les diff\'erents type d'atomes
+        et de liaisons). On d\'efinit $V^{*}$ l'ensemble des suites finies de sommets.
+        Au lieu de travailler avec des sous-graphes, nous allons \'etudier des chemins
+        sur le graphe. Pour cel\`a on va identifier les suites d \'etiquettes comme des chemins sur le 
+        graphe.
+    
+    \par
+        Ici, les graphes sont parcourus selon une marche al\'eatoire, ainsi le noyau entre deux graphes
+        est alors d\'efinit comme l'\'esperance d'avoir une paire de chemin similaire. Soit $p_{G1}$ ,
+        ${p_{G2}}$ les densit\'ees de probabilit\'ees sur les ensembles de chemins $V_1^{*}$, resp. $V_2^{*}$.
+        On a alors le noyau d\'efinit comme suit:
+        \begin{equation}
+            K(G_1,G_2) = \sum_{(h_1,h_2) \in V_1^{*} \times V_2^{*}} p_{G1}(h_1) p_{G2}(h_2) K_L(l(h_1),l(h_2))
+        \end{equation}
+        O\`u $l(h)$ est la succession des labels composant le chemin.
