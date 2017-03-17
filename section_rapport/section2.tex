@@ -1,19 +1,55 @@
-\section{Le noyau de l'article : des marches al\'eatoires sur les graphes mol\'eculaires}
-    \par
-        On va dans la suite consid\'erer des graphes \'etiquett\'es, ce qui consiste \`a prendre un graphe
-        $G = (V,E)$ et une fonction $l: V \cup E \rightarrow A$ o\`u $A$ est un alphabet choisi.
-        Dans la suite l'alphabet $A$ est suppos\'e fix\'e (contenant les diff\'erents type d'atomes
-        et de liaisons). On d\'efinit $V^{*}$ l'ensemble des suites finies de sommets.
-        Au lieu de travailler avec des sous-graphes, nous allons \'etudier des chemins
-        sur le graphe. Pour cel\`a on va identifier les suites d \'etiquettes comme des chemins sur le 
-        graphe.
-    
-    \par
-        Ici, les graphes sont parcourus selon une marche al\'eatoire, ainsi le noyau entre deux graphes
-        est alors d\'efinit comme l'\'esperance d'avoir une paire de chemin similaire. Soit $p_{G1}$ ,
-        ${p_{G2}}$ les densit\'ees de probabilit\'ees sur les ensembles de chemins $V_1^{*}$, resp. $V_2^{*}$.
-        On a alors le noyau d\'efinit comme suit:
-        \begin{equation}
-            K(G_1,G_2) = \sum_{(h_1,h_2) \in V_1^{*} \times V_2^{*}} p_{G1}(h_1) p_{G2}(h_2) K_L(l(h_1),l(h_2))
-        \end{equation}
-        O\`u $l(h)$ est la succession des labels composant le chemin.
+\newpage
+\section{Prise de d\'ecisions en pharmacologie}
+
+Dans toute la suite l'espace $\mathcal{E}$ sera constitu\'e par des mol\'ecules chimiques, mod\'elis\'ees par des graphes aux sommets et ar\g{e}tes \'etiquet\'es. %
+Plus explicitement, un tel graphe est un coupe $(V,E)$, constitu\'e de ses sommets et ar\g{e}tes, muni d'une fonction $l: V \cup E \rightarrow \mathcal{A}$ o\`u $\mathcal{A}$ est un alphabet choisi : %
+ici simplement les diff\'erents types d'atomes et de liaisons.
+
+\par
+Deux approches, pour de l'apprentissage supervis\'e sur des espaces chimiques qui contiennent de tels graphes, sont mentionn\'ees dans l'article : %
+calculer, \g{a} partir de $(V,E),l$, un vecteur de descripteurs $\Phi (V,E)$, compos\'e par exemple de fragments de mol\'ecules, fonctions chimiques etc %
+ou d\'efinir directement un noyau $k$ sur la base de \og{} ressemblances\fg{} entre deux graphes \'etiquet\'es, %
+cette derni\g{e}re approche demandnant un soin particulier car l'isomorphie entre les graphes ou sous-graphes est un probl\g{e}me difficile.
+
+\subsection{Premier exemple \cite{He} : des fragments mol\'eculaires comme descripteurs}
+
+Cette approche consiste \g{a} choisir, \emph{apr\g{e}s avoir inspect\'e le jeu de donn\'ees} sur lequel on fait l'apprentissage, %
+de fragments $\varphi$ de mol\'ecules dont la fr\'equence d'apparition dans le jeu de donn\'ees $\mathcal{D}$ est contr\^ol\'e au sens o\g{u} :
+\[freq(\varphi,\mathcal{D})\in [f_{min},f_{max}]\]
+avec la notation naturelle pour $freq \dots$.
+
+\subsection{Cas de l'article \cite{Mahe} : noyaux marginalis\'es}
+
+Selon la m\'ethode bayesienne introduite dans \cite{Ka} on d\'efinit, sur deux cha\^ines $x$ et $x'$ de $\mathcal{A}$ un \emph{noyau marginalis\'e} $K$ comme \'etant l'esp\'erance :
+\[K(x,x')=\sum\limits_{h,h'}K_z(z,z')p(x|h)p(x'|h')\]
+prise sur deux familles de marches al\'eatoires $h$ et $h'$, d\'efinies sur les graphes \'etiquet\'es dans $\mathcal{A}$, et dont la d\'edinition est suppos\'ee prost\'erieure \g{a} celle de $x$ et $x'$.
+
+\par
+$K_z$ est un noyau d\'efini conjointement sur les variables $x$ et $h$.
+
+\par
+On peut d\'efinir inductivement des noyaux conjoints et marginalis\'es pour n'importe quel graphe et des marches al\'eatoires arbitrairement longues. %
+\cite{Ka} d\'emontre m\^eme que la valeur asymptotique du noyau $K$ peut \^etre obtenue par la r\'esolution d'un syst\g{e}me lin\'eaire.
+
+\ligneinter
+Cette construction est reprise de mani\g{e}re synth\'etique dans \cite{Mahe}, on d\'efinit directement un noyau $K$ sur un espace chimique, contenant notre jeu de donn\'ees, par la formule :
+
+\begin{equation}
+K(G_1,G_2) = \sum_{(h_1,h_2) \in V_1^{\ast} \times V_2^{\ast}} p_{G1}(h_1) p_{G2}(h_2) K_L(l(h_1),l(h_2))
+\end{equation}
+o\g{u} $l(h)$ est la succession des labels de la marche $h$ et $K_L$ un noyau semid\'efini positif sur $\mathcal{A}^{\ast}$.
+
+\begin{itemize}
+\item $G_1:(V_1,E_1)$ et $G_2:(V_2,E_2)$ d\'esignent g\'en\'eriquement deux graphes \'etiquet\'es dans $\mathcal{A}$.
+\item $h_1$ et $h_2$ sont des marches al\'eatoires sur $G_1$ et $G_2$. %
+Ce sont des variables cach\'ees, qui ne d\'ecrivent pas explicitement les graphes qu'elles parcourent.
+\end{itemize}
+
+\ligneinter
+\cite{Mahe} propose enfin d'am\'eliorer les performances de l'appentissage machine sur un jeu de mol\'ecules en modifiant %
+le mode de g\'en\'eration des marches al\'eatoires \og{} $h$\fg{} : %
+Avec un processus Markovien \g{a} deux ant\'ec\'edents, c'est\g{a}-dire une marche al\'eatoire o\g{u} chaque \'etape d\'epend des deux pr\'ec\'edentes, %
+on exclut des marches al\'eatoires dites b\'egayantes, c'est-\g{a}-dire bouclant entre deux atomes, de la construction du noyau marginalis\'e.
+
+\par
+On aboutit ainsi \g{a} une fonction de d\'ecision plus discriminante, sans fournir beaucoup plus d'efforts.
