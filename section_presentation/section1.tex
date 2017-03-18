@@ -1,1 +1,73 @@
-\section{Pr\'elimitaires math\'ematiques : optimisation Lagrangienne}
+\section{SVM et optimisation Lagrangienne}
+
+\subsection{S\'eparation lin\'eaire \g{a} vaste marge}
+
+\begin{frame}
+Les donn\'ees d'un \'echantillon $(x_i)$ doivent \^etre s\'epar\'ees par un hyperplan d'\'equation $\langle w|x\rangle+b=0$, %
+suivant le signe d'un label individuel $y_i$.
+
+\pause
+\begin{block}{SVM : probl\g{e}me primal}<+->
+Minimiser la marge inverse :
+$\frac{\|w\|^2}{2}$
+
+sous les contraintes : $y_i(\langle w|x_i\rangle+b) -1\geq 0$
+\end{block}
+\begin{block}{Probl\g{e}me dual : multiplicateurs de Lagrange}<+->
+Trouver $\alpha^{\ast}:=\arg\min\limits_{\alpha}\sum\limits_i\alpha_i-\frac{1}{2}\sum\limits_{i,j}\alpha_i\alpha_jy_iy_j\langle x_i|x_j\rangle$
+
+sous $\alpha_i\geq 0$ et $\sum\limits_i y_i\alpha_i=0$.
+\end{block}
+\end{frame}
+
+\begin{frame}
+Parfois, la s\'eparation par un hyperplan affine n'est pas possible. On doit s'autoriser quelques erreurs dans la classification.
+
+\pause
+\begin{block}{Probl\g{e}me primal p\'enalis\'e}<+->
+Minimiser $\frac{\|w\|^2}{2}+C\sum\limits_i(y_i(\langle w|x_i\rangle +b)-1)_+$
+avec une p\'enalit\'e $C$.% -typiqu$C=+\infty$ : pas d'erreur possible, s\'eparation lin\''aire.
+\end{block}
+\begin{block}{Probl\g{e}me dual}<+->
+Trouver
+\[\alpha^{\ast}:=\arg\min\limits_{\alpha}\sum\limits_i\alpha_i-\frac{1}{2}\sum\limits_{i,j}\alpha_i\alpha_jy_iy_j\langle x_i|x_j\rangle\]
+sous
+$\alpha_i\in [0,C]$ et $\sum\limits_i y_i\alpha_i=0$.
+\end{block}
+\end{frame}
+
+\subsection{Noyaux semid\'efinis positifs}
+
+\begin{frame}
+\begin{block}{S\'eparation dans un espace de repr\'esentation}
+Soit $\mathcal{E}$ un espace physicochimique, contenant les objets que l'on veut classifier, sans structure pr\'ehilbertienne. On d\'efinit :
+\begin{itemize}
+\item<+-> Le \textbf{vecteur de repr\'esentation} $\Phi (x_i)$ de chaque donn\'ee $x_i$ de $\mathcal{E}$, compos\'e de \textbf{descripteurs} num\'eriques % est un \textbf{vecteur de descripteurs} num\'eriques construit \g{a} partir d'une donn\'ee $x$ de $E$
+et contenu dans un espace de pr\'ehilbertien $\mathcal{V}$ -on peut m\^eme lui substituer un espace de hilbert ;%\cite{Ar} ;
+\item<+-> Le \textbf{noyau} $k=(x_i,x_j)\mapsto \langle \Phi (x_i)|\Phi (x_j)\rangle$ qui remplace le produit scalaire sur $\mathcal{E}$.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item<+-> On peut s\'eparer lin\'eairement les vecteurs de repr\'esentation $\Phi (x_i)$, $\Phi (x_j)$
+\item<+-> Ceci revient \g{a} maximiser en $\alpha$ :
+\[\sum\limits_i\alpha_i-\frac{1}{2}\sum\limits_{i,j}\alpha_i\alpha_jy_iy_j\langle \Phi(x_i)|\Phi (x_j)\rangle%
+\text{ sous }\sum_i\alpha_iy_i=0\text{ et }\alpha_i\in[0,C]\]
+\item<+-> Ce probl\g{e}me d'optimisation \'equivaut \g{a} :
+\[\sum\limits_i\alpha_i-\frac{1}{2}\alpha_i\alpha_j y_iy_jk(x_i,x_j)\text{ sous les m\^emes contraintes}\]
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item<+-> $k$ est toujours sym\'etrique, semid\'efini positif selon la terminologie des formes bilin\'eaires ;
+\item<+-> L'espace $\mathcal{V}$ qui contient les descripteurs $\Phi (x)$ n'est pas toujours explicite ;
+\item<+-> Dans certaines constructions, les vecteurs de repr\'esentations ne sont pas explicit\'es : %
+on travaille directement sur un noyau $k$ qui mesure la ressemblance entre les \'el\'ements de $\mathcal{E}$.
+\end{itemize}
+\end{block}
+\end{frame}
