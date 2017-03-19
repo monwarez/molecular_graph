@@ -11,8 +11,8 @@ o\g{u} $\h$ est une variable cach\'ee, parcourant un espace de probabilit\'e sur
 \begin{definition}<+->
 \begin{itemize}
 \item<+-> La formule, abstraite, qui pr\'ec\g{e}de peut \^etre r\'eecrite : %
-\[K(x,x')=\sum\limits_{h,h'}K_z(z,z')p(x|h)p(x'|h')\]
-\item<+-> Cette approche Bayesienne pr\'esente l'avantage que les distributions a posteriori $p(\cdot|\h)$ peuvent \^etre calcul\'ees.
+$K(x,x')=\sum\limits_{\h,\h'}K_z(z,z')p(\h|x)p(\h'|x')$
+\item<+-> Cette approche Bayesienne pr\'esente l'avantage que les distributions a posteriori $p(\h|\cdot)$ peuvent \^etre calcul\'ees.
 \item<+-> $K_z$ est appel\'e la \emph{noyau conjoint}, qui prend en compte les informations $x$, $x'$ et les variables cach\'ees.
 \end{itemize}
 \end{definition}
@@ -26,7 +26,7 @@ Un \textbf{graphe \'etiquet\'e} $G$ est d\'edini par le couple $(V,E)$ de ses so
 \end{definition}
 \begin{block}{Chimie organique}<+->
 \begin{itemize}
-\item<+-> Les mol\'ecules construites avec des liaisons covalentes, notamment en chimie organique, peuvent \g{e}tre mod\'elis\'ees par des graphes connexes \'etiquet\'es.
+\item<+-> Les mol\'ecules construites avec des liaisons covalentes, notamment en chimie organique, peuvent \^etre mod\'elis\'ees par des graphes connexes \'etiquet\'es.
 \item<+-> Dans ce cas, les \'etiquettes de sommets correspondent aux diff\'erents atomes, celles des ar\g{e}tes aux diff\'erents types de liaisons.
 \end{itemize}
 \end{block}
@@ -35,7 +35,7 @@ Un \textbf{graphe \'etiquet\'e} $G$ est d\'edini par le couple $(V,E)$ de ses so
 \begin{frame}
 \begin{block}{}<+->
 L'approche pr\'econis\'ee ici est de prendre pour $\h$, $\h'$ des marches al\'eatoires sur les graphes mol\'eculaires. %
-On extrait les informations $x$, $x'$ des marches images contenues \emph{dans $\mathcal{A}^{\ast}$} pour alimenterle noyau conjoint.
+On extrait les informations $x$, $x'$ des marches images contenues \emph{dans $\mathcal{A}^{\ast}$} pour alimenter le noyau conjoint.
 \end{block}
 \begin{block}{Noyau marginalis\'e}<+->
 \[K(G_1,G_2) = \sum\limits_{(h_1,h_2) \in V_1^{\ast} \times V_2^{\ast}}p(\h_1|G_1)p(\h_2|G_2)K_L(l(\h_1),l(\h_2))\]
@@ -44,7 +44,7 @@ On extrait les informations $x$, $x'$ des marches images contenues \emph{dans $\
 
 \begin{frame}
 \begin{itemize}
-\item<+-> $K_L$ et les distributions $p(\cdot |\h)$ sont calcul\'ees inductivement, en prenant en compte le caract\g{e}re markovien des marches $\h$ ;
+\item<+-> $K_L$ et les distributions $p(\h|\cdot)$ sont calcul\'ees inductivement, en prenant en compte le caract\g{e}re markovien des marches $\h$ ;
 \item<+-> $K_L$ porte sur des marches potentiellement infiniment longues ;
 \item<+-> la convergence du noyau conjoint est assur\'ee et on peut l'approcher moyennant la r\'esolution de syst\g{e}mes lin\'eaires.
 \end{itemize}
