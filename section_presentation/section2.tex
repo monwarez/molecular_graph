@@ -13,8 +13,8 @@ o\g{u} $\h$ est une variable cach\'ee, parcourant un espace de probabilit\'e sur
 \begin{definition}<+->
 \begin{itemize}
 \item<+-> La formule, abstraite, qui pr\'ec\g{e}de peut \^etre r\'eecrite : %
-\[K(x,x')=\sum\limits_{h,h'}K_z(z,z')p(x|h)p(x'|h')\]
-\item<+-> Cette approche Bayesienne pr\'esente l'avantage que les distributions a posteriori $p(\cdot|\h)$ peuvent \^etre calcul\'ees.
+$K(x,x')=\sum\limits_{\h,\h'}K_z(z,z')p(\h|x)p(\h'|x')$
+\item<+-> Cette approche Bayesienne pr\'esente l'avantage que les distributions a posteriori $p(\h|\cdot)$ peuvent \^etre calcul\'ees.
 \item<+-> $K_z$ est appel\'e la \emph{noyau conjoint}, qui prend en compte les informations $x$, $x'$ et les variables cach\'ees.
 \end{itemize}
 \end{definition}
@@ -28,7 +28,7 @@ Un \textbf{graphe \'etiquet\'e} $G$ est d\'efini par le couple $(V,E)$ de ses so
 \end{definition}
 \begin{block}{Chimie organique}<+->
 \begin{itemize}
-\item<+-> Les mol\'ecules construites avec des liaisons covalentes, notamment en chimie organique, peuvent \g{e}tre mod\'elis\'ees par des graphes connexes \'etiquet\'es.
+\item<+-> Les mol\'ecules construites avec des liaisons covalentes, notamment en chimie organique, peuvent \^etre mod\'elis\'ees par des graphes connexes \'etiquet\'es.
 \item<+-> Dans ce cas, les \'etiquettes de sommets correspondent aux diff\'erents atomes, celles des ar\g{e}tes aux diff\'erents types de liaisons.
 \end{itemize}
 \end{block}
@@ -46,7 +46,7 @@ On extrait les informations $x$, $x'$ des marches images contenues \emph{dans $\
 
 \begin{frame}
 \begin{itemize}
-\item<+-> $K_L$ et les distributions $p(\cdot |\h)$ sont calcul\'ees inductivement, en prenant en compte le caract\g{e}re markovien des marches $\h$ ;
+\item<+-> $K_L$ et les distributions $p(\h|\cdot)$ sont calcul\'ees inductivement, en prenant en compte le caract\g{e}re markovien des marches $\h$ ;
 \item<+-> $K_L$ porte sur des marches potentiellement infiniment longues ;
 \item<+-> la convergence du noyau conjoint est assur\'ee et on peut l'approcher moyennant la r\'esolution de syst\g{e}mes lin\'eaires.
 \end{itemize}
