@@ -11,3 +11,4 @@ run.sh
 *.bbl
 *.blg
 *.backup
+*.out
